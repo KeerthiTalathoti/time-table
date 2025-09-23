@@ -1,0 +1,27 @@
+{
+  "name": "college-timetable",
+  "version": "1.0.0",
+  "description": "College timetable management system with student, teacher, and admin roles",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "timetable",
+    "college",
+    "nodejs",
+    "express",
+    "react"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

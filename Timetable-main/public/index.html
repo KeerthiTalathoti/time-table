@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School/College Timetable Optimizer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Single-page skeleton for a timetable optimizer with Admin, Faculty, and Student flows.">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+  <!-- Welcome / Hero -->
+  <section id="welcome" class="section active">
+    <div class="hero">
+      <h1>Welcome</h1>
+      <p class="subtitle">Build and manage optimized timetables for schools and colleges.</p>
+      <button id="btn-get-started" class="btn btn-primary">Get Started →</button>
+    </div>
+  </section>
+
+  <!-- Role Selection -->
+  <section id="role-select" class="section hidden">
+    <div class="card">
+      <h2>Select your role</h2>
+      <div class="role-grid">
+        <button id="role-admin" class="btn btn-card">Admin</button>
+        <button id="role-faculty" class="btn btn-card">Faculty</button>
+        <button id="role-student" class="btn btn-card">Student</button>
+      </div>
+      <button id="back-to-welcome" class="btn btn-ghost">← Back</button>
+    </div>
+  </section>
+
+  <!-- Admin Dashboard (Placeholder) -->
+  <section id="admin-dashboard" class="section hidden">
+    <div class="card">
+      <div class="section-header">
+        <h2>Admin Dashboard</h2>
+        <button class="btn btn-ghost" data-nav="role-select">← Change Role</button>
+      </div>
+      <p class="muted">This is a placeholder. Later we will add:</p>
+      <ul class="todo-list">
+        <li>Signup/Login</li>
+        <li>School/College setup</li>
+        <li>Classes, subjects, teachers, resources</li>
+        <li>Basic rules and timetable generation</li>
+        <li>Share links and manage faculty logins</li>
+      </ul>
+      <div class="cta-row">
+        <button class="btn">Generate Timetable</button>
+        <button class="btn">Manage Faculty</button>
+        <button class="btn">View Timetable Link</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Faculty Profile (Placeholder) -->
+  <section id="faculty-profile" class="section hidden">
+    <div class="card">
+      <div class="section-header">
+        <h2>Faculty Profile</h2>
+        <button class="btn btn-ghost" data-nav="role-select">← Change Role</button>
+      </div>
+      <p class="muted">This is a placeholder. Later we will add:</p>
+      <ul class="todo-list">
+        <li>Login with credentials from Admin</li>
+        <li>Upload study materials</li>
+        <li>Access timetable and profile</li>
+      </ul>
+      <div class="cta-row">
+        <input type="url" placeholder="Paste material link" class="input" aria-label="Study material link">
+        <button class="btn">Add Link</button>
+      </div>
+      <div class="list muted" aria-live="polite">
+        <em>No materials yet</em>
+      </div>
+    </div>
+  </section>
+
+  <!-- Student Dashboard (Placeholder) -->
+  <section id="student-dashboard" class="section hidden">
+    <div class="card">
+      <div class="section-header">
+        <h2>Student Dashboard</h2>
+        <button class="btn btn-ghost" data-nav="role-select">← Change Role</button>
+      </div>
+      <p class="muted">This is a placeholder. Later we will add:</p>
+      <ul class="todo-list">
+        <li>Register with username/register number</li>
+        <li>View class timetable</li>
+        <li>Browse faculty profiles and materials</li>
+      </ul>
+      <div class="cta-row">
+        <button class="btn">View Timetable</button>
+        <button class="btn">Browse Faculty</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
