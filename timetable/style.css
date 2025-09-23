@@ -1,0 +1,218 @@
+/* Base */
+:root {
+    --blue: #0d6efd;
+    --card-bg: #ffffff;
+    --text: #0a0a0a;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    background: var(--blue);
+    color: var(--text);
+}
+
+.container {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.card {
+    width: min(100%, 1100px);
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px;
+}
+.center-text { text-align: center; }
+.section-title { margin: 8px 0 6px; font-size: 1.05rem; }
+
+h1 {
+    margin: 0 0 18px;
+    font-size: 1.6rem;
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.muted { color: var(--muted); }
+
+/* Form */
+form { width: 100%; }
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+
+label { font-weight: 600; font-size: 0.95rem; }
+
+input[type="text"], input[type="number"], select, textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: box-shadow .15s ease, border-color .15s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #9ec5fe;
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+}
+
+textarea { resize: vertical; }
+
+.grid {
+    display: grid;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+@media (max-width: 900px) {
+    .grid.two, .grid.three, .grid.four { grid-template-columns: 1fr; }
+}
+
+.actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: #f8fafc;
+    color: #111827;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform .05s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.btn:hover { box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+.btn:active { transform: translateY(1px); }
+
+.btn.primary {
+    background: var(--blue);
+    color: #fff;
+    border-color: transparent;
+}
+
+.btn.danger {
+    background: #ef4444;
+    color: #fff;
+    border-color: transparent;
+}
+
+.mt-12 { margin-top: 12px; }
+.mt-6 { margin-top: 6px; }
+.hidden { display: none !important; }
+
+/* Preview */
+.preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.table-wrap {
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+table { width: 100%; border-collapse: collapse; }
+
+thead th {
+    position: sticky;
+    top: 0;
+    background: #e7f1ff;
+    color: #0b5ed7;
+}
+
+th, td {
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    padding: 10px 12px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+th:first-child, td:first-child { text-align: left; white-space: normal; }
+
+tbody tr:nth-child(odd) td { background: #fafafa; }
+
+td.break {
+    background: #fff7ed;
+    color: #9a3412;
+    font-weight: 600;
+}
+
+.subject-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+}
+
+.subject-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #1f2937;
+}
+
+.faculty-name {
+    font-size: 0.7rem;
+    color: #059669;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.classroom-name {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 500;
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #e5e7eb;
+}
+
+/* Print styles for PDF */
+@media print {
+    body { background: #fff; }
+    .container { padding: 0; }
+    .card { box-shadow: none; border-radius: 0; }
+    .no-print { display: none !important; }
+    table { page-break-inside: avoid; }
+}
+
+/* Row templates */
+.row { align-items: end; }
+.row .remove-btn {
+    justify-self: end;
+}
+
+

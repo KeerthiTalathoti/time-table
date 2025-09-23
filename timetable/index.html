@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timetable Optimizer</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <main class="container">
+        <section id="form-card" class="card">
+            <h1 class="center-text">School / College Timetable Optimizer</h1>
+            <form id="timetable-form">
+                <div class="grid two">
+                    <div class="field">
+                        <label for="schoolName">School/College Name</label>
+                        <input type="text" id="schoolName" name="schoolName" placeholder="e.g., Green Valley High" required />
+                    </div>
+                    <div class="field">
+                        <label for="term">Academic Year / Term</label>
+                        <input type="text" id="term" name="term" placeholder="e.g., 2025-26 / Fall" required />
+                    </div>
+                </div>
+
+                <div class="grid three">
+                    <div class="field">
+                        <label for="workingDays">Working Days</label>
+                        <select id="workingDays" name="workingDays" required>
+                            <option value="Mon-Fri">Mon–Fri</option>
+                            <option value="Mon-Sat">Mon–Sat</option>
+                            <option value="Custom">Custom (enter below)</option>
+                        </select>
+                        <input type="text" id="customDays" class="mt-6 hidden" placeholder="e.g., Mon,Tue,Wed,Thu,Fri" />
+                    </div>
+                    <div class="field">
+                        <label for="periodsPerDay">Periods per day</label>
+                        <input type="number" id="periodsPerDay" name="periodsPerDay" min="1" max="12" value="7" required />
+                    </div>
+                    <div class="field">
+                        <label for="periodDuration">Duration of each period (minutes)</label>
+                        <input type="number" id="periodDuration" name="periodDuration" min="20" max="120" value="45" required />
+                    </div>
+                </div>
+
+                <div class="grid three mt-12">
+                    <div class="field">
+                        <label for="startTime">Start time</label>
+                        <input type="time" id="startTime" value="09:00" />
+                    </div>
+                    <div class="field">
+                        <label for="endTime">End time</label>
+                        <input type="time" id="endTime" value="16:00" />
+                    </div>
+                    <div class="field"></div>
+                </div>
+
+                <div class="grid two">
+                    <div class="field">
+                        <label for="lunchBreakPeriod">Lunch break period number</label>
+                        <input type="number" id="lunchBreakPeriod" min="1" placeholder="e.g., 5" />
+                        <input type="number" id="lunchBreakDuration" class="mt-6" placeholder="Lunch duration (min)" value="45" />
+                    </div>
+                    <div class="field">
+                        <label for="classrooms">Number of classrooms for this section</label>
+                        <input type="number" id="classrooms" name="classrooms" min="1" value="5" />
+                        <input type="text" id="classroomNumbers" class="mt-6" placeholder="Enter classroom numbers (e.g., 101,102,103)" />
+                        <small class="mt-2" style="color: #6b7280; font-size: 0.85rem;">Leave empty to auto-generate classroom names</small>
+                    </div>
+                </div>
+
+                
+
+                <section class="mt-12">
+                    <h3 class="section-title center-text">Subject Allocation</h3>
+                    <div class="alloc-row grid four" id="allocHeader">
+                        <div class="field"><label>Subject</label></div>
+                        <div class="field"><label>Classes (e.g., 6A,6B)</label></div>
+                        <div class="field"><label>Periods/week</label></div>
+                        <div class="field"><label>Allow double period</label></div>
+                    </div>
+                    <div id="allocList"></div>
+                    <div class="actions">
+                        <button type="button" id="addSubjectBtn" class="btn">Add Subject</button>
+                    </div>
+                </section>
+
+                <div class="grid three mt-12">
+                    <div class="field">
+                        <label for="periodsPerSubject">Periods required per subject per week</label>
+                        <input type="number" id="periodsPerSubject" min="1" max="10" value="4" />
+                    </div>
+                    <div class="field">
+                        <label for="timePerSubject">Time taken by subject (minutes)</label>
+                        <input type="number" id="timePerSubject" min="20" max="120" value="45" />
+                    </div>
+                    <div class="field">
+                        <label for="maxPerTeacher">Max periods per teacher / week</label>
+                        <input type="number" id="maxPerTeacher" min="1" max="50" value="25" />
+                    </div>
+                </div>
+
+                <section class="mt-12">
+                    <h3 class="section-title center-text">Teachers</h3>
+                    <div class="teacher-row grid four" id="teacherHeader">
+                        <div class="field"><label>Faculty</label></div>
+                        <div class="field"><label>Subjects (e.g., Math,Physics)</label></div>
+                        <div class="field"><label>Max periods/week</label></div>
+                        <div class="field"><label>Availability (e.g., Mon 1-3;)</label></div>
+                    </div>
+                    <div id="teacherList"></div>
+                    <div class="actions">
+                        <button type="button" id="addTeacherBtn" class="btn">Add Teacher</button>
+                    </div>
+                </section>
+
+                <section class="mt-12">
+                    <h3 class="section-title center-text">Classrooms & Resources</h3>
+                    <div class="grid three">
+                        <div class="field">
+                            <label for="totalClassrooms">Total Classrooms</label>
+                            <input type="number" id="totalClassrooms" min="1" value="20" />
+                        </div>
+                        <div class="field">
+                            <label for="scienceLabs">Lab</label>
+                            <input type="number" id="scienceLabs" min="0" value="2" />
+                        </div>
+                        <div class="field">
+                            <label for="sportsHalls">Sports Halls</label>
+                            <input type="number" id="sportsHalls" min="0" value="1" />
+                        </div>
+                    </div>
+                    <div class="field mt-12">
+                        <label for="labNames">Lab names</label>
+                        <input type="text" id="labNames" placeholder="e.g., Physics Lab, Chemistry Lab, Computer Lab" />
+                    </div>
+                </section>
+
+                <section class="mt-12">
+                    <h3 class="section-title center-text">Rules & Constraints</h3>
+                    <div class="grid two">
+                        <div class="field">
+                            <label><input type="checkbox" id="ruleNoDoubleTeacher" checked /> No teacher in two places at once</label>
+                        </div>
+                        <div class="field">
+                            <label><input type="checkbox" id="ruleAvoidBackToBack" checked /> Avoid same subject back-to-back</label>
+                        </div>
+                        <div class="field">
+                            <label><input type="checkbox" id="ruleFixedLunch" checked /> Fixed lunch period</label>
+                        </div>
+                        <div class="field">
+                            <label><input type="checkbox" id="ruleBalanceLoad" checked /> Balance teacher load across days</label>
+                        </div>
+                    </div>
+                    <div class="field mt-12">
+                        <label for="ruleNotes">Notes</label>
+                        <textarea id="ruleNotes" placeholder="Any extra constraints or comments..." rows="3"></textarea>
+                    </div>
+                </section>
+
+                <div class="actions">
+                    <button type="submit" class="btn primary">Generate Timetable</button>
+                    <button type="button" id="resetBtn" class="btn">Reset</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="preview-card" class="card hidden">
+            <div class="preview-header">
+                <div>
+                    <h2 id="schoolTitle" class="center-text">Timetable Preview</h2>
+                    <p id="termTitle" class="muted"></p>
+                </div>
+                <div class="actions no-print">
+                    <button type="button" id="backBtn" class="btn">Back to Form</button>
+                    <button type="button" id="resetBtn2" class="btn danger">Reset</button>
+                    <button type="button" id="downloadBtn" class="btn primary">Download PDF</button>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table id="timetable" aria-label="Generated Timetable"></table>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+    <!-- Optional backend starter: run node server.js to enable /api/generate -->
+</body>
+</html>
+
+
